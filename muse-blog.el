@@ -405,7 +405,7 @@ REGEXP is not specified, it defaults to
                                             "#" anchor "][" title "]]")))
                      ;; Replace only the title part if there was one
                      (if (match-string 2)
-                         (replace-match new-title nil t nil 2)
+                         (replace-match new-title t t nil 2)
                        (insert new-title)))))
                (incf article-number))
              'muse-blog-delete-buffer-content
