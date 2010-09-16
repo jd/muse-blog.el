@@ -431,6 +431,7 @@ REGEXP is not specified, it defaults to
                    :header         'muse-blog-rss-header
                    :footer         'muse-blog-rss-footer
                    :date-format    'muse-blog-rss-date-format
+                   :date-format-notime 'muse-blog-rss-date-format
                    :entry-template 'muse-blog-rss-entry-template
                    :base-url       'muse-blog-rss-base-url)
 
