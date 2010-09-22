@@ -117,7 +117,7 @@ document."
 
 (defcustom muse-blog-html-entry-template
   "<div class=\"entry\">
-  <a name=\"%anchor%\" style=\"text-decoration: none\">&nbsp;</a>
+  <a id=\"%anchor%\" style=\"text-decoration: none\">&nbsp;</a>
   <div class=\"entry-body\">
     <div class=\"entry-head\">
       <div class=\"entry-date\">
@@ -240,7 +240,10 @@ does not match `muse-blog-date-regexp'."
   string)
 
 (defun muse-blog-anchor (title)
-  (muse-journal-anchorize-title (muse-blog-clean-markups title)))
+  (replace-regexp-in-string
+   "[^A-Za-z_-]" ""
+   (subst-char-in-string
+    ?  ?_ (muse-blog-clean-markups title)) t t))
 
 (defun muse-blog-make-title (date title)
   "Build the title string based on DATE and TITLE."
@@ -287,7 +290,8 @@ footer). Footer should be separated by FOOTER-REGEXP."
                  ;; …or to the end of the buffer
                  (point-max))))
             (goto-char (point-min))
-            (funcall on-entry date title anchor))))
+            (funcall on-entry date title anchor)
+            (goto-char (point-max)))))
       ;; Go back to the beginning
       (goto-char (point-min))
       ;; Look for first entry
@@ -321,7 +325,7 @@ footer). Footer should be separated by FOOTER-REGEXP."
        (when (re-search-forward muse-blog-html-heading-regexp nil t)
          (delete-region (match-beginning 0) (match-end 0)))
        (setq text (buffer-string))
-       (delete-region (point-min) (point-max)) 
+       (delete-region (point-min) (point-max))
        (muse-insert-file-or-string (muse-style-element :entry-template))
        (when fixup
          (funcall fixup))
