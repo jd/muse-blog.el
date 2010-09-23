@@ -382,7 +382,7 @@ REGEXP is not specified, it defaults to
     (dolist (file files result)
       ;; Only treat file if we did not reach the maximum number of articles
       ;; already.
-      (unless (and end (>= article-number end))
+      (unless (and end (> article-number end))
         ;; Update result
         (setq
          result
@@ -397,7 +397,7 @@ REGEXP is not specified, it defaults to
              muse-blog-muse-heading-regexp
              (lambda (date title anchor)
                (if (or
-                    (and end (>= article-number end))
+                    (and end (> article-number end))
                     (and start (< article-number start)))
                    ;; Outside range, delete!
                    (muse-blog-delete-buffer-content)
