@@ -173,7 +173,7 @@ a filename."
   :group 'muse-blog)
 
 (defcustom muse-blog-rss-date-format
-  "%a, %d %b %Y %H:%M:%S %Z"
+  "%a, %d %b %Y %H:%M:%S %z"
   "Date format to use for RSS 2.0 entries."
   :type 'string
   :group 'muse-blog)
