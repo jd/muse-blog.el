@@ -365,6 +365,7 @@ footer). Footer should be separated by FOOTER-REGEXP."
    'muse-blog-rss-fixup
    'muse-blog-delete-buffer-content))
 
+;;;###autoload
 (defun muse-blog-make-index (&optional start end regexp)
   "Build index file, including number from START to END. Articles
 number start at 0. Only files matching REGEXP will be included. If
